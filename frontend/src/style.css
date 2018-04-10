@@ -1,9 +1,3 @@
-/*
-Kotha Pro
-Author: ShapedTheme
-Version: 2.0
-*/
-
 /* base common css*/
 
 .post-cat,
@@ -2420,6 +2414,18 @@ footer .ft-copyright p a:hover {
   box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.075);
 }
 
+.leave-comment select {
+  background-color: #FAFAFA;
+  color: #999999;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 28px;
+  height: 40px;
+  border-color: #eee;
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.075);
+}
+
 .leave-comment .send-btn {
   background: #333;
   color: #fff;
@@ -4215,7 +4221,8 @@ body.food .insta-feed {
     padding: 26px 35px 20px;
   }
   .leave-comment input,
-  .leave-comment textarea {
+  .leave-comment textarea,
+  .leave-comment select {
     margin-bottom: 20px;
   }
   .leave-comment .form-group {
@@ -4257,9 +4264,29 @@ body.food .insta-feed {
 
 /*# sourceMappingURL=style.css.map */
 
+#dropdown-size-small{
+  border: 1px solid #da521e;
+  color: #da521e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 10px 18px;
+  border-radius: 0;
+}
+
 #sort-btn>.dropdown {
   float: right;
   margin: 0 0 25px 0;
+}
+
+#sort-btn>.dropdown>ul {
+  border: 1px solid #da521e;
+  color: #da521e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 10px 18px;
+  border-radius: 0;
 }
 
 .add-btn {
@@ -4275,4 +4302,8 @@ body.food .insta-feed {
 .add-btn:hover {
   background: #da521e;
   color: #fff;
+}
+
+.go-back-home {
+  cursor: pointer;
 }
