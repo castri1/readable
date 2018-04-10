@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { fetchPostsByCategory } from '../actions';
-
-const CategoryLink = ({ name, path, fetchPostsByCategory }) => (
+const CategoryLink = ({ name, path, ...props }) => (
   <h2 className="text-uppercase">
-    <Link onClick={() => fetchPostsByCategory(name)} key={name} to={`/categories/${path.toLowerCase()}`}>{name}</Link>
+    <a key={name} href={`/categories/${path.toLowerCase()}`}>{name}</a>
   </h2>
 );
 
 class CategoryContainer extends Component {
-
-  fetchPostsByCategory = (category) => {
-    this.props.fetchPostsByCategory(category);
-  }
-
   render() {
     return (
       <div className="kotha-sidebar">
@@ -26,7 +18,7 @@ class CategoryContainer extends Component {
           <ul>
             <li className="media">
               <div className="latest-post-content">
-                {this.props.categories.map(category => (<CategoryLink key={category.name} {...category} fetchPostsByCategory={this.fetchPostsByCategory}/>))}
+                {this.props.categories.map(category => (<CategoryLink key={category.name} {...category} />))}
               </div>
             </li>
           </ul>
@@ -36,16 +28,4 @@ class CategoryContainer extends Component {
   }
 }
 
-function mapStateToProps({ categories }) {
-  return {
-    categories
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchPostsByCategory: (category) => dispatch(fetchPostsByCategory(category))
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryContainer);
+export default CategoryContainer;

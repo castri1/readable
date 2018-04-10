@@ -1,22 +1,57 @@
 const ROOT_URL = 'http://localhost:3001';
 
-let token = localStorage.token
-if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
-
 const headers = {
   'Accept': 'application/json',
-  'Authorization': token
+  'Authorization': 'token'
 }
 
-export const fetchPosts = () => fetch(`${ROOT_URL}/posts`, { headers })
-  .then(res => res.json())
-  .then(data => data)
+function getRequest(path) {
+  return fetch(`${ROOT_URL}${path}`, { headers }).then(res => res.json());
+}
 
-export const fetchPostsByCategory = (category) => fetch(`${ROOT_URL}/${category}/posts`, { headers })
-  .then(res => res.json())
-  .then(data => data)
+function postRequest(path, body) {
+  const options = {
+    ...headers,
+    method: 'POST',
+    body: JSON.stringify(body)
+  };
+  return fetch(`${ROOT_URL}${path}`, options).then(res => res.json());
+}
 
-export const fetchCategories = () => fetch(`${ROOT_URL}/categories`, { headers })
-  .then(res => res.json())
-  .then(data => data.categories)
+function deleteRequest(path) {
+  const options = {
+    ...headers,
+    method: 'DELETE'
+  };
+  return fetch(`${ROOT_URL}${path}`, options).then(res => res.json());
+}
+
+function putRequest(path, body) {
+  const options = {
+    ...headers,
+    method: 'PUT',
+    body: JSON.stringify(body)
+  };
+  return fetch(`${ROOT_URL}${path}`, options).then(res => res.json());
+}
+
+export const Comments = {
+  all: (postId) => getRequest(`/posts/${postId}/comments`),
+  delete: (id) => deleteRequest(`/comments/${id}`),
+  get: (id) => getRequest(`/commenst/${id}`),
+  update: (comment) => putRequest(`/comments/${comment.id}`, comment),
+  create: (comment) => postRequest('/comments', comment)
+}
+
+export const Posts = {
+  all: () => getRequest(`/posts`),
+  get: (id) => getRequest(`posts/${id}`),
+  byCategory: (category) => getRequest(`/${category}/posts`),
+  create: (post) => postRequest('/posts', post),
+  delete: (id) => deleteRequest(`/posts/${id}`),
+  update: (post) => putRequest(`/posts/${post.id}`, post)
+};
+
+export const Categories = {
+  all: () => getRequest('/categories').then(data => data.categories)
+};

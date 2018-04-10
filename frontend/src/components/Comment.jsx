@@ -3,7 +3,7 @@ import moment from 'moment';
 
 class Comment extends Component {
   render() {
-    const { id, timestamp, body, author, voteScore } = this.props;
+    const { timestamp, body, author, voteScore } = this.props;
 
     return (
       <div className="single-comment">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { fetchPosts, sortPosts, fetchPostsByCategory } from '../actions';
+import { sortPosts } from '../actions/posts';
 import CategoryContainer from './CategoryContainer';
 import Post from './Post';
 import ControlBar from './ControlBar';
@@ -26,25 +26,11 @@ class Test extends Component {
           </Row>
         </Col>
         <Col sm={4}>
-          <CategoryContainer />
+          <CategoryContainer categories={this.props.categories} fetchPostsByCategory={this.props.fetchPostsByCategory} />
         </Col>
       </Row>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    sortPosts: (posts, property, order) => dispatch(sortPosts(posts, property, order))
-  };
-}
-
-function mapStateToProps({ posts }) {
-  return {
-    posts: Object.keys(posts).map(postId => {
-      return posts[postId];
-    })
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Test);
+export default Test;

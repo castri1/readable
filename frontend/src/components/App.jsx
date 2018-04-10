@@ -15,8 +15,9 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/categories/:category" component={Category} />
-          <Route exact path="/posts/new" component={CreateEdit} />
           <Route exact path="/posts/:postId" component={PostDetail} />
+          <Route exact path="/posts/new" component={CreateEdit} />
+          <Route exact path="/posts/:postId/edit" component={CreateEdit} />
           <Route exact component={NotFound} />
         </Switch>
       </Layout>

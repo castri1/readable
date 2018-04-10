@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Grid } from 'react-bootstrap';
 
-import { fetchCategories } from '../actions'
-
-
 class Layout extends Component {
-  componentWillMount() {
-    this.props.fetchCategories();
-  }
-
   render() {
     return (
       <div>
@@ -34,10 +26,4 @@ class Layout extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchCategories: () => dispatch(fetchCategories())
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Layout);
+export default Layout;

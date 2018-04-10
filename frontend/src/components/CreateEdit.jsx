@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import * as ReadableAPI from '../utils/api';
 
 const FieldGroup = ({ id, help, size, ...props }) => {
   size = parseInt(size, 10);
@@ -16,7 +19,28 @@ const FieldGroup = ({ id, help, size, ...props }) => {
 };
 
 class CreateEdit extends Component {
+  state = {
+    post: {
+      author: '',
+      body: '',
+      category: '',
+      commentCount: '',
+      deleted: '',
+      id: '',
+      timestamp: '',
+      title: '',
+      voteScore: ''
+    },
+    postId: ''
+  }
+
+  componentWillMount() {
+    const { postId } = this.props.match.params;
+    this.setState({ postId });
+  }
+
   render() {
+    const { title } = this.state.post;
     return (
       <Row>
         <Col sm={12}>
@@ -28,6 +52,7 @@ class CreateEdit extends Component {
                 name="title"
                 placeholder="Post title"
                 size="6"
+                defaultValue={title}
                 required
               >
               </FieldGroup>
@@ -52,7 +77,14 @@ class CreateEdit extends Component {
               </FieldGroup>
               <FormGroup>
                 <Col md={12}>
-                  <textarea className="form-control" rows="6" name="body" placeholder="Write your post..." required=""></textarea>
+                  <textarea
+                    className="form-control"
+                    rows="6"
+                    name="body"
+                    placeholder="Write your post..."
+                    required=""
+                  >
+                  </textarea>
                 </Col>
               </FormGroup>
               <button type="submit" className="btn send-btn">Save Post</button>
@@ -64,4 +96,16 @@ class CreateEdit extends Component {
   }
 }
 
-export default CreateEdit;
+function mapDispatchToProps(dispatch) {
+  return {
+
+  };
+}
+
+function mapStateToProps({ }) {
+  return {
+
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEdit);
