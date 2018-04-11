@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import * as ReadableAPI from '../utils/api';
+import * as ReadableAPI from '../../utils/api';
 
 const FieldGroup = ({ id, help, size, ...props }) => {
   size = parseInt(size, 10);

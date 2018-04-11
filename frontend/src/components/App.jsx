@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Layout from './Layout';
-import Home from './Home';
-import CreateEdit from './CreateEdit';
-import Category from './Category';
-import PostDetail from './PostDetail';
-import NotFound from './NotFound';
+import { Layout, Home, CreateEdit, Category, PostDetail, NotFound } from './views';
 
 class App extends Component {
   render() {

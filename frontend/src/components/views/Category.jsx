@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { sortPosts, fetchPostsByCategory } from '../actions/posts';
-import { fetchCategories } from '../actions/categories';
-import Test from './Test';
+import { sortPosts, fetchPostsByCategory } from '../../actions/posts';
+import { fetchCategories } from '../../actions/categories';
+import Test from '../Test';
 
 class Category extends Component {
   componentDidMount() {
