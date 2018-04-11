@@ -2,37 +2,49 @@ const ROOT_URL = 'http://localhost:3001';
 
 const headers = {
   'Accept': 'application/json',
-  'Authorization': 'token'
+  'Authorization': 'token',
+  'content-type': 'application/json'
+};
+
+function executeRequest(fn) {
+  return fn()
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText)
+      }
+      return response;
+    })
+    .then(res => res.json());
 }
 
 function getRequest(path) {
-  return fetch(`${ROOT_URL}${path}`, { headers }).then(res => res.json());
+  return executeRequest(() => fetch(`${ROOT_URL}${path}`, { headers }));
 }
 
 function postRequest(path, body) {
   const options = {
-    ...headers,
+    headers,
     method: 'POST',
     body: JSON.stringify(body)
   };
-  return fetch(`${ROOT_URL}${path}`, options).then(res => res.json());
+  return executeRequest(() => fetch(`${ROOT_URL}${path}`, options));
 }
 
 function deleteRequest(path) {
   const options = {
-    ...headers,
+    headers,
     method: 'DELETE'
   };
-  return fetch(`${ROOT_URL}${path}`, options).then(res => res.json());
+  return executeRequest(() => fetch(`${ROOT_URL}${path}`, options));
 }
 
 function putRequest(path, body) {
   const options = {
-    ...headers,
+    headers,
     method: 'PUT',
     body: JSON.stringify(body)
   };
-  return fetch(`${ROOT_URL}${path}`, options).then(res => res.json());
+  return executeRequest(() => fetch(`${ROOT_URL}${path}`, options));
 }
 
 export const Comments = {
@@ -45,7 +57,7 @@ export const Comments = {
 
 export const Posts = {
   all: () => getRequest(`/posts`),
-  get: (id) => getRequest(`posts/${id}`),
+  get: (id) => getRequest(`/posts/${id}`),
   byCategory: (category) => getRequest(`/${category}/posts`),
   create: (post) => postRequest('/posts', post),
   delete: (id) => deleteRequest(`/posts/${id}`),

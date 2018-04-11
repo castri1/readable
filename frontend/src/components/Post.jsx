@@ -12,6 +12,7 @@ class Post extends Component {
         <div className="post-content">
           <div className="entry-header text-center text-uppercase">
             <Link to={`/categories/${category}`} className="post-cat">{category}</Link>
+            <Link to={`/posts/${id}/edit`} className="pull-right"><i className="fa fa-edit"></i></Link>
             <h2>
               <Link to={`/posts/${id}`}>{title}</Link>
             </h2>

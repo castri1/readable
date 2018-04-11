@@ -1,6 +1,7 @@
 import * as ReadableApi from '../utils/api';
 
 export const LOAD_POSTS = 'LOAD_POSTS';
+export const LOAD_POST = 'LOAD_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const UPDATE_POST = 'UPDATE_POST';
@@ -10,13 +11,22 @@ function loadPosts(posts) {
   return {
     type: LOAD_POSTS,
     posts
-  }
+  };
+}
+
+function addPost(post) {
+  return {
+    type: ADD_POST,
+    post
+  };  
 }
 
 export const fetchPosts = () => dispatch => (
   ReadableApi
-    .Posts.all()
+    .Posts
+    .all()
     .then(posts => dispatch(loadPosts(posts)))
+    .catch(err => console.error(err))
 )
 
 export const fetchPostsByCategory = (category) => dispatch => (
@@ -24,6 +34,7 @@ export const fetchPostsByCategory = (category) => dispatch => (
     .Posts
     .byCategory(category)
     .then(posts => dispatch(loadPosts(posts)))
+    .catch(err => console.error(err))
 )
 
 export const sortPosts = (posts, property) => {
@@ -33,3 +44,32 @@ export const sortPosts = (posts, property) => {
     property
   }
 }
+
+export const fetchPostById = (id) => dispatch => (
+  ReadableApi
+    .Posts
+    .get(id)
+    .then(post => dispatch({
+      type: LOAD_POST,
+      post
+    }))
+    .catch(err => console.error(err))
+)
+
+export const createPost = (post) => dispatch => (
+  ReadableApi
+    .Posts
+    .create(post)
+    .then(post => dispatch(addPost(post)))
+    .catch(err => console.error(err))
+)
+
+export const updatePost = (post) => dispatch => (
+    ReadableApi
+      .Posts
+      .update(post)
+      .then(post => dispatch({
+        type: UPDATE_POST,
+        post
+      }))
+)

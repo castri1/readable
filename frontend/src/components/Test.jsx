@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
-import { sortPosts } from '../actions/posts';
 import CategoryContainer from './CategoryContainer';
 import Post from './Post';
 import ControlBar from './ControlBar';
