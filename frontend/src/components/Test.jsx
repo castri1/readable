@@ -13,6 +13,8 @@ class Test extends Component {
   }
 
   render() {
+    const { posts, categories, match: { params: { category } } } = this.props;
+
     return (
       <Row>
         <Col sm={8}>
@@ -20,13 +22,21 @@ class Test extends Component {
             <ControlBar sortPosts={this.sortPosts} />
           </Row>
           <Row>
+            {category &&
+              <Col sm={12}>
+                <h1 className="text-center">{category.toUpperCase()}</h1>
+              </Col>}
+          </Row>
+          <Row>
             <Col sm={12}>
-              {this.props.posts.map(post => <Post key={post.id} {...post} />)}
+              {posts.length === 0 ?
+                <h3 className="text-center">No posts yet...</h3> :
+                posts.map(post => <Post key={post.id} {...post} />)}
             </Col>
           </Row>
         </Col>
         <Col sm={4}>
-          <CategoryContainer categories={this.props.categories} fetchPostsByCategory={this.props.fetchPostsByCategory} />
+          <CategoryContainer categories={categories} />
         </Col>
       </Row>
     );

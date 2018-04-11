@@ -10,6 +10,12 @@ class Category extends Component {
     this.props.fetchPostsByCategory(this.props.category);
     this.props.fetchCategories();
   }
+
+  componentWillReceiveProps(newProps) {
+    const { category } = newProps.match.params;
+    this.props.fetchPostsByCategory(category);
+  }
+
   render() {
     return (
       <Test {...this.props} />

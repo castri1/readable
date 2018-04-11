@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CategoryLink = ({ name, path, ...props }) => (
   <h2 className="text-uppercase">
-    <a key={name} href={`/categories/${path.toLowerCase()}`}>{name}</a>
+    <Link key={name} to={`/categories/${path.toLowerCase()}`}>{name}</Link>
   </h2>
 );
 
