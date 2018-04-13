@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { connect } from 'react-redux';
+
+import { deletePost } from '../actions/posts';
 
 class Post extends Component {
   render() {
@@ -12,7 +15,8 @@ class Post extends Component {
         <div className="post-content">
           <div className="entry-header text-center text-uppercase">
             <Link to={`/categories/${category}`} className="post-cat">{category}</Link>
-            <Link to={`/posts/${id}/edit`} className="pull-right"><i className="fa fa-edit"></i></Link>
+            <Link to={`/posts/${id}/edit`} className="pull-right"><i className="fa fa-pencil"></i></Link>
+            <a onClick={() => this.props.delete(id)} className="pull-right"><i className="fa fa-trash"></i></a>
             <h2>
               <Link to={`/posts/${id}`}>{title}</Link>
             </h2>
@@ -28,10 +32,18 @@ class Post extends Component {
               <p className="pull-right">Score: {voteScore}</p>
             </h3>
           </div>
+          <a className="pull-right"><i className="fa fa-thumbs-up"></i></a>
+          <a className="pull-right"><i className="fa fa-thumbs-down"></i></a>
         </div>
       </article>
     );
   }
 }
 
-export default Post;
+function mapDispatchToProps(dispatch) {
+  return {
+    delete: (id) => dispatch(deletePost(id))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Post);

@@ -74,6 +74,7 @@ class CreateEdit extends Component {
       };
       this.props.addPost(post);
     }
+    this.props.history.push("/");
   }
 
   render() {

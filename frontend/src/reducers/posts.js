@@ -13,7 +13,7 @@ export default function postsReducer(state = [], action) {
     case UPDATE_POST:
       return state.map(post => post.id === action.id ? action.post : post);
     case DELETE_POST:
-      return state.filter(post => post.id === action.id ? null : post)
+      return state.filter(post => post.id !== action.id)
     case SORT_POSTS:
       return [...action.posts.sort(sortBy(action.property))]
     default:

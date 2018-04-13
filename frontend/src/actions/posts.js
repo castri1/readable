@@ -73,3 +73,14 @@ export const updatePost = (post) => dispatch => (
         post
       }))
 )
+
+export const deletePost = (id) => dispatch => {
+  ReadableApi
+    .Posts
+    .delete(id)
+    .then(() => dispatch({
+      type: DELETE_POST,
+      id
+    }))
+    .catch(err => console.error(err))
+}
