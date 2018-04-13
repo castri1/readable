@@ -4307,3 +4307,8 @@ body.food .insta-feed {
 .go-back-home {
   cursor: pointer;
 }
+
+.post-actions > a {
+  margin: 0 2px;
+  cursor: pointer;
+}

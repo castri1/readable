@@ -52,7 +52,8 @@ export const Comments = {
   delete: (id) => deleteRequest(`/comments/${id}`),
   get: (id) => getRequest(`/commenst/${id}`),
   update: (comment) => putRequest(`/comments/${comment.id}`, comment),
-  create: (comment) => postRequest('/comments', comment)
+  create: (comment) => postRequest('/comments', comment),
+  vote: (id, option) => postRequest(`/comments/${id}`, { option })
 }
 
 export const Posts = {
@@ -61,7 +62,8 @@ export const Posts = {
   byCategory: (category) => getRequest(`/${category}/posts`),
   create: (post) => postRequest('/posts', post),
   delete: (id) => deleteRequest(`/posts/${id}`),
-  update: (post) => putRequest(`/posts/${post.id}`, post)
+  update: (post) => putRequest(`/posts/${post.id}`, post),
+  vote: (id, option) => postRequest(`/posts/${id}`, { option })
 };
 
 export const Categories = {

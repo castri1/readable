@@ -18,7 +18,7 @@ function addPost(post) {
   return {
     type: ADD_POST,
     post
-  };  
+  };
 }
 
 export const fetchPosts = () => dispatch => (
@@ -39,7 +39,7 @@ export const fetchPostsByCategory = (category) => dispatch => (
 
 export const sortPosts = (posts, property) => {
   return {
-    type: SORT_POSTS,    
+    type: SORT_POSTS,
     posts,
     property
   }
@@ -65,16 +65,16 @@ export const createPost = (post) => dispatch => (
 )
 
 export const updatePost = (post) => dispatch => (
-    ReadableApi
-      .Posts
-      .update(post)
-      .then(post => dispatch({
-        type: UPDATE_POST,
-        post
-      }))
+  ReadableApi
+    .Posts
+    .update(post)
+    .then(post => dispatch({
+      type: UPDATE_POST,
+      post
+    }))
 )
 
-export const deletePost = (id) => dispatch => {
+export const deletePost = (id) => dispatch => (
   ReadableApi
     .Posts
     .delete(id)
@@ -83,4 +83,17 @@ export const deletePost = (id) => dispatch => {
       id
     }))
     .catch(err => console.error(err))
+)
+
+export const votePost = (id, option) => dispatch => {
+  ReadableApi
+    .Posts
+    .vote(id, option)
+    .then(post => dispatch({
+      type: UPDATE_POST,
+      id,
+      post
+    }))
+    .catch(err => console.error(err))
 }
+
