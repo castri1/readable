@@ -62,7 +62,8 @@ class CreateEdit extends Component {
     }
 
     if (this.props.edit) {
-      this.props.updatePost(this.state);
+      this.props.updatePost(this.state)
+        .then(() => this.props.history.push(`/posts/${this.props.postId}`));
     } else {
       const post = {
         title,
@@ -72,9 +73,9 @@ class CreateEdit extends Component {
         id: uuid(),
         timestamp: Date.now()
       };
-      this.props.addPost(post);
+      this.props.addPost(post)
+        .then(() => this.props.history.push("/"));
     }
-    this.props.history.push("/");
   }
 
   render() {
