@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { FormGroup } from 'react-bootstrap';
 
-import { voteComment, updateComment } from '../actions/comments';
+import { voteComment, updateComment } from '../../actions/comments';
 
 class Comment extends Component {
   state = {

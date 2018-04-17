@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import CategoryContainer from '../CategoryContainer';
-import Post from '../Post';
-import CommentList from '../CommentList';
-import LeaveComment from '../LeaveComment';
+import CategoryContainer from '../ui/CategoryContainer';
+import Post from '../ui/Post';
+import CommentList from '../ui/CommentList';
+import LeaveComment from '../ui/LeaveComment';
 
 import { fetchPostById, deletePost } from '../../actions/posts';
 import { fetchPostComments, postComment, deleteComment } from '../../actions/comments';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { sortPosts, fetchPostsByCategory } from '../../actions/posts';
 import { fetchCategories } from '../../actions/categories';
-import PostCategoriesContainer from '../PostCategoriesContainer';
+import PostCategoriesContainer from '../ui/PostCategoriesContainer';
 
 class Category extends Component {
   componentDidMount() {

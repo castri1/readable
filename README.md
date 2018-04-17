@@ -8,15 +8,17 @@ This repository includes the code for the backend API Server that you'll use to 
 
 To get started developing right away:
 
+* Install and start the front end application
+    - `cd frontend`
+    - `npm install`
+    - `npm start`
 * Install and start the API server
     - `cd api-server`
     - `npm install`
     - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
 
 ## API Server
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+
+Information about the Client side application and how to use it can be found in its [README file](frontend/README.md).

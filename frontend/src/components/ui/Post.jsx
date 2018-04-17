@@ -4,7 +4,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 
-import { votePost } from '../actions/posts';
+import { votePost } from '../../actions/posts';
 
 class Post extends Component {
   render() {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts, sortPosts } from '../../actions/posts';
 import { fetchCategories } from '../../actions/categories';
 
-import PostCategoriesContainer from '../PostCategoriesContainer';
+import PostCategoriesContainer from '../ui/PostCategoriesContainer';
 
 class Home extends Component {
   componentDidMount() {
