@@ -1,0 +1,22 @@
+[0416/202148.395:ERROR:process_info.cc(359)] UncheckedAllocate
+[0416/202235.352:ERROR:process_info.cc(359)] UncheckedAllocate
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.504:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0416/202235.505:ERROR:exception_snapshot_win.cc(88)] thread ID 6828 not found in process
+[0416/202235.505:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed

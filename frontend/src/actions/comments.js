@@ -3,7 +3,7 @@ import * as ReadableApi from '../utils/api';
 export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
-export const DELETE_COMMENT = 'UPDATE_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export const fetchPostComments = (postId) => dispatch => (
   ReadableApi
@@ -49,3 +49,15 @@ export const deleteComment = (id) => dispatch => (
     }))
     .catch(err => console.error(err))
 )
+
+export const updateComment = (comment) => dispatch => {
+  ReadableApi
+    .Comments
+    .update(comment)
+    .then(comment => dispatch({
+      type: UPDATE_COMMENT,
+      comment,
+      id: comment.id
+    }))
+    .catch(err => console.error(err));
+}

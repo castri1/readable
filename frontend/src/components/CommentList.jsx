@@ -9,7 +9,7 @@ class CommentList extends Component {
         <div className="comment-heading">
           <h3>Comments</h3>
         </div>
-        {this.props.comments.map(comment => <Comment key={comment.id} {...comment} />)}
+        {this.props.comments.map(comment => <Comment key={comment.id} {...comment} deleteComment={this.props.deleteComment}/>)}
       </div>
     );
   }

@@ -113,6 +113,7 @@ class CreateEdit extends Component {
                 name="category"
                 componentClass="select"
                 placeholder="Category"
+                disabled={this.props.edit}
                 size="6"
                 required
               >

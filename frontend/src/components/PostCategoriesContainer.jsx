@@ -5,7 +5,7 @@ import CategoryContainer from './CategoryContainer';
 import Post from './Post';
 import ControlBar from './ControlBar';
 
-class Test extends Component {
+class PostCategoriesContainer extends Component {
   sortPosts = (property) => {
     this.props.sortPosts(this.props.posts, property);
   }
@@ -15,7 +15,10 @@ class Test extends Component {
 
     return (
       <Row>
-        <Col sm={8}>
+        <Col md={4} mdPush={8}>
+          <CategoryContainer categories={categories} />
+        </Col>
+        <Col md={8} mdPull={4}>
           <Row>
             <ControlBar sortPosts={this.sortPosts} />
           </Row>
@@ -29,16 +32,13 @@ class Test extends Component {
             <Col sm={12}>
               {posts.length === 0 ?
                 <h3 className="text-center">No posts yet...</h3> :
-                posts.map(post => <Post key={post.id} {...post} />)}
+                posts.map(post => <Post key={post.id} {...post} actions={false}/>)}
             </Col>
           </Row>
-        </Col>
-        <Col sm={4}>
-          <CategoryContainer categories={categories} />
         </Col>
       </Row>
     );
   }
 }
 
-export default Test;
+export default PostCategoriesContainer;

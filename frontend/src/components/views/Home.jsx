@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts, sortPosts } from '../../actions/posts';
 import { fetchCategories } from '../../actions/categories';
 
-import Test from '../Test';
+import PostCategoriesContainer from '../PostCategoriesContainer';
 
 class Home extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Home extends Component {
 
   render() {
     return (
-      <Test {...this.props} />
+      <PostCategoriesContainer {...this.props} />
     );
   }
 }
