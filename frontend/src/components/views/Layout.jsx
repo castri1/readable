@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import Loading from '../ui/Loading';
 
 class Layout extends Component {
   render() {
     return (
       <div>
+        <Loading isLoading={this.props.loading} />
         <header className="kotha-menu marketing-menu">
           <Navbar className="text-uppercase">
             <Nav>
@@ -26,4 +29,8 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+const mapStateToProps = ({ listeners }) => ({
+  loading: listeners.loading
+});
+
+export default connect(mapStateToProps)(Layout);

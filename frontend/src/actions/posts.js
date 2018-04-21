@@ -1,4 +1,5 @@
 import * as ReadableApi from '../utils/api';
+import asyncRequestAction from './asyncRequestAction';
 
 export const LOAD_POSTS = 'LOAD_POSTS';
 export const LOAD_POST = 'LOAD_POST';
@@ -21,20 +22,14 @@ function addPost(post) {
   };
 }
 
-export const fetchPosts = () => dispatch => (
-  ReadableApi
-    .Posts
-    .all()
-    .then(posts => dispatch(loadPosts(posts)))
-    .catch(err => console.error(err))
+export const fetchPosts = () => asyncRequestAction(
+  ReadableApi.Posts.all,
+  posts => loadPosts(posts)
 )
 
-export const fetchPostsByCategory = (category) => dispatch => (
-  ReadableApi
-    .Posts
-    .byCategory(category)
-    .then(posts => dispatch(loadPosts(posts)))
-    .catch(err => console.error(err))
+export const fetchPostsByCategory = (category) => asyncRequestAction(
+  () => ReadableApi.Posts.byCategory(category),
+  posts => loadPosts(posts)
 )
 
 export const sortPosts = (posts, property) => {
@@ -45,44 +40,33 @@ export const sortPosts = (posts, property) => {
   }
 }
 
-export const fetchPostById = (id) => dispatch => (
-  ReadableApi
-    .Posts
-    .get(id)
-    .then(post => dispatch({
-      type: LOAD_POST,
-      post
-    }))
-    .catch(err => console.error(err))
+export const fetchPostById = (id) => asyncRequestAction(
+  () => ReadableApi.Posts.get(id),
+  post => ({
+    type: LOAD_POST,
+    post
+  })
 )
 
-export const createPost = (post) => dispatch => (
-  ReadableApi
-    .Posts
-    .create(post)
-    .then(post => dispatch(addPost(post)))
-    .catch(err => console.error(err))
+export const createPost = (post) => asyncRequestAction(
+  () => ReadableApi.Posts.create(post),
+  post => addPost(post)
 )
 
-export const updatePost = (post) => dispatch => (
-  ReadableApi
-    .Posts
-    .update(post)
-    .then(post => dispatch({
-      type: UPDATE_POST,
-      post
-    }))
+export const updatePost = (post) => asyncRequestAction(
+  () => ReadableApi.Posts.update(post),
+  post => ({
+    type: UPDATE_POST,
+    post
+  })
 )
 
-export const deletePost = (id) => dispatch => (
-  ReadableApi
-    .Posts
-    .delete(id)
-    .then(() => dispatch({
-      type: DELETE_POST,
-      id
-    }))
-    .catch(err => console.error(err))
+export const deletePost = (id) => asyncRequestAction(
+  () => ReadableApi.Posts.delete(id),
+  () => ({
+    type: DELETE_POST,
+    id
+  })
 )
 
 export const votePost = (id, option) => dispatch => {

@@ -1,14 +1,11 @@
 import * as ReadableApi from '../utils/api';
+import asyncRequestAction from './asyncRequestAction';
 
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 
-export const fetchCategories = () => dispatch => (
-  ReadableApi
-    .Categories
-    .all()
-    .then(categories => dispatch({
-      type: LOAD_CATEGORIES,
-      categories
-    }))
-    .catch(err => console.error(err))
-)
+export const fetchCategories = () => asyncRequestAction(
+  ReadableApi.Categories.all,
+  categories => ({
+    type: LOAD_CATEGORIES,
+    categories
+  }));

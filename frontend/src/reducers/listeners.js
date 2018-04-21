@@ -1,12 +1,11 @@
+import { LOADING } from '../actions/listeners';
 
-
-export default function listenersREducer(state = { loading: false }, action) {
+export default function listenersReducer(state = {}, action) {
   switch (action.type) {
-    case 'LOADING':
+    case LOADING:
       return {
-        ...state,
         loading: action.loading
-      }
+      };
     default:
       return state;
   }

@@ -32,7 +32,7 @@ class PostCategoriesContainer extends Component {
             <Col sm={12}>
               {posts.length === 0 ?
                 <h3 className="text-center">No posts yet...</h3> :
-                posts.map(post => <Post key={post.id} {...post} actions={false}/>)}
+                posts.map(post => <Post key={post.id} {...post} actions={true} push={this.props.history.push}/>)}
             </Col>
           </Row>
         </Col>

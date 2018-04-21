@@ -20,8 +20,8 @@ class ControlBar extends Component {
             <MenuItem onClick={() => this.sortPosts('-voteScore')} eventKey="1">Vote Score: High</MenuItem>
             <MenuItem onClick={() => this.sortPosts('voteScore')} eventKey="2">Vote Score: Low</MenuItem>
             <MenuItem divider />
-            <MenuItem onClick={() => this.sortPosts('-timestamp')} eventKey="3">Date: Newer</MenuItem>
-            <MenuItem onClick={() => this.sortPosts('timestamp')} eventKey="4">Date: Older</MenuItem>
+            <MenuItem onClick={() => this.sortPosts('-timestamp')} eventKey="3">Date: Newest</MenuItem>
+            <MenuItem onClick={() => this.sortPosts('timestamp')} eventKey="4">Date: Oldest</MenuItem>
           </DropdownButton>
         </ButtonToolbar>
       </Col>

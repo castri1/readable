@@ -12,17 +12,24 @@ import { fetchPostComments, postComment, deleteComment } from '../../actions/com
 import { fetchCategories } from '../../actions/categories';
 
 class PostDetail extends Component {
+  state = {
+    loaded: false
+  }
+
   componentDidMount() {
-    this.props.getPost(this.props.postId);
-    this.props.getComments(this.props.postId);
-    this.props.getCategories();
+    this.props.getPost(this.props.postId)
+      .then(res => {
+        const { post } = res;
+        if (Object.keys(post).length === 0) {
+          this.props.history.push("/404");
+          return;
+        }
+        this.setState({ loaded: true });
+        this.props.getComments(this.props.postId);
+        this.props.getCategories();
+      });
   }
-
-  onDeletePost = (id) => {
-    this.props.deletePost(id)
-      .then(() => this.props.history.push("/"));
-  }
-
+  
   onComment = (comment) => {
     this.props.addComment(comment)
       .then(() => this.props.getPost(comment.parentId));
@@ -34,7 +41,7 @@ class PostDetail extends Component {
   }
 
   render() {
-    return (
+    return this.state.loaded && (
       <Row>
         <Col md={4} mdPush={8}>
           <CategoryContainer categories={this.props.categories} />
@@ -42,7 +49,7 @@ class PostDetail extends Component {
         <Col md={8} mdPull={4}>
           <Row>
             <Col sm={12}>
-              <Post {...this.props.post} actions={true} deletePost={this.onDeletePost}/>
+              <Post {...this.props.post} push={this.props.history.push} actions={true} />
             </Col>
           </Row>
           <CommentList comments={this.props.comments} deleteComment={this.onDeleteComment} />

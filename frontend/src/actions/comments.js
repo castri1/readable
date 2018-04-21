@@ -1,36 +1,28 @@
 import * as ReadableApi from '../utils/api';
+import asyncRequestAction from './asyncRequestAction';
 
 export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
-export const fetchPostComments = (postId) => dispatch => (
-  ReadableApi
-    .Comments
-    .all(postId)
-    .then(comments => dispatch({
-      type: LOAD_COMMENTS,
-      comments
-    }))
-    .catch(err => console.error(err))
-)
+export const fetchPostComments = (postId) => asyncRequestAction(
+  () => ReadableApi.Comments.all(postId),
+  comments => ({
+    type: LOAD_COMMENTS,
+    comments
+  }));
 
-export const postComment = (newComment) => dispatch => (
-  ReadableApi
-    .Comments
-    .create(newComment)
-    .then(comment => dispatch({
-      type: ADD_COMMENT,
-      comment
-    }))
-    .catch(err => console.error(err))
+export const postComment = (newComment) => asyncRequestAction(
+  () => ReadableApi.Comments.create(newComment),
+  comment => ({
+    type: ADD_COMMENT,
+    comment
+  })
 )
 
 export const voteComment = (id, option) => dispatch => (
-  ReadableApi
-    .Comments
-    .vote(id, option)
+  ReadableApi.Comments.vote(id, option)
     .then(comment => dispatch({
       type: UPDATE_COMMENT,
       comment,
@@ -39,25 +31,19 @@ export const voteComment = (id, option) => dispatch => (
     .catch(err => console.error(err))
 )
 
-export const deleteComment = (id) => dispatch => (
-  ReadableApi
-    .Comments
-    .delete(id)
-    .then(comment => dispatch({
-      type: DELETE_COMMENT,
-      id
-    }))
-    .catch(err => console.error(err))
+export const deleteComment = (id) => asyncRequestAction(
+  () => ReadableApi.Comments.delete(id),
+  res => ({
+    type: DELETE_COMMENT,
+    id
+  })
 )
 
-export const updateComment = (comment) => dispatch => {
-  ReadableApi
-    .Comments
-    .update(comment)
-    .then(comment => dispatch({
-      type: UPDATE_COMMENT,
-      comment,
-      id: comment.id
-    }))
-    .catch(err => console.error(err));
-}
+export const updateComment = (comment) => asyncRequestAction(
+  () => ReadableApi.Comments.update(comment),
+  comment => ({
+    type: UPDATE_COMMENT,
+    comment,
+    id: comment.id
+  })
+)

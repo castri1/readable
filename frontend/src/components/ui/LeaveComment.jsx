@@ -81,7 +81,7 @@ class LeaveComment extends Component {
                 rows="6"
                 name="body"
                 placeholder="Write your comment..."
-                required=""
+                required
               >
               </textarea>
             </div>

@@ -2362,6 +2362,7 @@ footer .ft-copyright p a:hover {
   line-height: 30px;
   text-align: center;
   width: 60px;
+  cursor: pointer;
 }
 
 .comment-area .single-comment .media .media-heading .reply-btn:hover {

@@ -4,9 +4,14 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 
-import { votePost } from '../../actions/posts';
+import { votePost, deletePost } from '../../actions/posts';
 
 class Post extends Component {
+  onDelete = (id) => {
+    this.props.delete(id)
+      .then(() => this.props.push("/"));
+  }
+
   render() {
     const { body, author, category, title, timestamp, id, voteScore, commentCount, actions } = this.props;
     const date = moment(timestamp).format("MM/DD/YYYY");
@@ -19,10 +24,10 @@ class Post extends Component {
             {actions && (
               <div className="pull-right post-actions">
                 <Link to={`/posts/${id}/edit`}><i className="fa fa-edit"></i></Link>
-                <a onClick={() => this.props.deletePost(id)}><i className="fa fa-trash"></i></a>
+                <a onClick={() => this.onDelete(id)}><i className="fa fa-trash"></i></a>
               </div>)}
             <h2>
-              <Link to={`/posts/${id}`}>{title}</Link>
+              <Link to={`/${category}/${id}`}>{title}</Link>
             </h2>
           </div>
           <div className="entry-content">
@@ -65,7 +70,8 @@ class Post extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    vote: (id, option) => dispatch(votePost(id, option))
+    vote: (id, option) => dispatch(votePost(id, option)),
+    delete: (id) => dispatch(deletePost(id))
   }
 }
 
